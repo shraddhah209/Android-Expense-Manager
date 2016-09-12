@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "26499861255",
+    "project_id": "js-expense-manager"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26499861255:android:d7098d5ec1c05d91",
+        "android_client_info": {
+          "package_name": "com.shraddhajagruti.ost.jsexpensemanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26499861255-0r9a2e91k74sohu35q99hgrv1etjnrdd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shraddhajagruti.ost.jsexpensemanager",
+            "certificate_hash": "01439CA8EC96443703432FB1559030807843EA9A"
+          }
+        },
+        {
+          "client_id": "26499861255-gits64afni4vn1q188ooi0sb2bv7o3c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc-y2Pw1HIegtaoa9V4VQ_K40UU6NDo7c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
