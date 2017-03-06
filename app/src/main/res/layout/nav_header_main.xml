@@ -15,6 +15,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select to category start!"
+        android:text="Select category to start!"
         android:id="@+id/textView" />
 </LinearLayout>

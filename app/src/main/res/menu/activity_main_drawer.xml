@@ -6,7 +6,12 @@
             android:title="Add Expense" />
         <item android:id="@+id/nav_addinc" android:icon="@android:drawable/ic_menu_preferences"
             android:title="Add Income" />
+        <item android:id="@+id/nav_graphmonth" android:icon="@android:drawable/ic_menu_info_details"
+            android:title="View monthly report" />
+        <item android:id="@+id/nav_search" android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Search" />
         <item android:id="@+id/nav_about" android:icon="@android:drawable/ic_menu_info_details"
             android:title="About" />
+
     </group>
 </menu>

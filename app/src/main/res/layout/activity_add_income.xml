@@ -62,7 +62,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
                 android:id="@+id/button2"
-                android:text="todays"
+                android:text="Back"
                 android:onClick="onClick"
                 />
         </LinearLayout>
