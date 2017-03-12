@@ -6,11 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class AddIncome extends AppCompatActivity {
     EditText t;
     Cursor c;
     JSDB mydb=new JSDB(this,"JSdatabase",2);
-    Button btn;
+    Button btn,b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,23 +43,37 @@ public class AddIncome extends AppCompatActivity {
             }
         });
 
+        b = (Button) findViewById(R.id.add_income);
+
+        b.setOnClickListener(new View.OnClickListener()
+
+        {
+            public void onClick(View v)
+            {
+                Toast.makeText(AddIncome.this, "Income Added", Toast.LENGTH_SHORT).show();
+                SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
+                String strDate = sdf.format(new Date());
+                int amt = Integer.parseInt(t.getText().toString());
+                ContentValues values = new ContentValues();
+                values.put("amount", amt);
+                values.put("date", strDate);
+                mydb.insert(values);
+            }
+        }
+    );
+
     }
 
-    public void set(View v)
-    {   SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, yyyy");
-        String strDate = sdf.format(new Date());
-        //int id=new Random().nextInt();
-        //String name=t.getText().toString();
-        int amt=Integer.parseInt(t.getText().toString());
-        ContentValues values = new ContentValues();
-        values.put("amount",amt);
-        values.put("date", strDate);
-        //values.put("phone",ph);
-        //values.put("_id",id);
-        mydb.insert(values);
+
+
+
+
+    @Override
+    public void onBackPressed() {
+
+
+
     }
-
-
 
 
 }

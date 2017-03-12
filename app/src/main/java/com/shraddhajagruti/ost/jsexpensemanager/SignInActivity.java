@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 /*public class SignInActivity extends AppCompatActivity {
@@ -51,9 +53,10 @@ public class SignInActivity extends AppCompatActivity implements
     private FirebaseAuth mFirebaseAuth;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-
+    private Firebase nRef;
+    private String mUsername;
     private SignInButton mSignInButton;
-
+    private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
 
     // Firebase instance variables
@@ -62,7 +65,7 @@ public class SignInActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
         // Assign fields
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
 
@@ -80,17 +83,37 @@ public class SignInActivity extends AppCompatActivity implements
                 .build();
 
         // Initialize FirebaseAuth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
     }
 
+
+    private void handleFirebaseAuthResult(AuthResult authResult) {
+        if (authResult != null) {
+            // Welcome the user
+            FirebaseUser user = authResult.getUser();
+            Toast.makeText(this, "Welcome " + user.getEmail(), Toast.LENGTH_SHORT).show();
+
+            // Go back to the main activity
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
                 signIn();
                 break;
+            default: return;
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+
+
+    }
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -132,6 +155,11 @@ public class SignInActivity extends AppCompatActivity implements
                             Toast.makeText(SignInActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            mUsername = mFirebaseUser.getDisplayName();
+                           // Firebase nRefChild = nRef.child("Username");
+                          //  nRefChild.setValue(mUsername);
+
+                            //Toast.makeText(SignInActivity.this, "Welcome"+ mFirebaseUser.getDisplayName(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignInActivity.this, MainActivity.class));
                             finish();
                         }
